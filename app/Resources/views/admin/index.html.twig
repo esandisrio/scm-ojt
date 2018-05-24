@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <p>iTours Administrator System</p>
+        </div>
+        <hr>
+        <div class="row">
+            <p>Hi, {{ creditential.name }} - {{ creditential.email }} - <a href="/logout">[Log Out]</a></p>
+        </div>
+        <hr>
+        <div class="row">
+            <p>Product Manager</p>
+            <p><a href="/product/add">[Add Product]</a></p>
+            <p><a href="/product/list">[List Product]</a></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+{% use 'default/item/header.html.twig' %}
+{% use 'default/item/footer.html.twig' %}
+
+{% block body %}
+    <div class="jumbotron">
+        <div class="container center">
+            <h1>Welcome to the iTours System</h1>
+            <br/>
+            <p>Start looking for your dream holiday destination.</p>
+            <form class="form-inline center" style="margin-bottom:10px;">
+                <div class="form-group-center-big">
+                    <label class="sr-only" for="homeSearch">Search</label>
+                    <input type="text" class="form-control" id="homeSearch" placeholder="Search Your Dream Destination" style="width:100%">
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            <p>or...</p>
+            <p>Browse our tour package collection below.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="masonry-grid">
+                <div class="card-sizer"></div>
+                {% for product in products %}
+                    <div class="product-card-wrapper">
+                        <a href="/product/{{ product.id }}">
+                            <div class="product-card">
+                                <div class="product-card-title">
+                                    {{ product.name }}
+                                </div>
+                                <img src="{{ asset('img/') }}{{ product.image }}" overflow="hidden"/>
+                                <div class="product-card-transparent">
+                                    {{ product.duration }} - {{ product.slot }} Slot Available
+                                </div>
+                                <div class="product-card-title">
+                                    IDR {{ product.price|number_format(0, '.', ',') }}
+                                </div>
+                                <div class="product-card-desc">
+                                    {{ product.description }}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <hr>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/masonry.pkgd.min.js') }}"></script>
+
+    <script>
+        $(window).load(function() {
+            var elem = document.querySelector('.masonry-grid');
+
+            var msnry = new Masonry( elem, {
+                itemSelector: '.product-card-wrapper',
+                columnWidth: '.card-sizer',
+                percentPosition: true
+            });
+        });
+    </script>
+{% endblock %}

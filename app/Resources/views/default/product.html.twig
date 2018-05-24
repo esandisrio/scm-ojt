@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+{% use 'default/item/header.html.twig' %}
+{% use 'default/item/footer.html.twig' %}
+
+
+{% block body %}
+    <div class="jumbotron">
+        <div class="container center">
+            <p>Placeholder</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <p class="product-title">{{ product.name }}</p>
+            <p>Departure date {{ product.depart|date("d M Y") }} for {{ product.duration }}</p>
+            <hr>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="product-detail-image">
+                    <img src="{{ asset('img/') }}{{ product.image }}" overflow="hidden" width="100%" />
+                    <p>IDR {{ product.price|number_format(0, '.', ',') }}</p>
+                </div>
+                <div class="product-detail-image">
+                    <p>{{ product.slot }} Available Slot</p>
+                    <!--
+                    <p>{{ product.booked }} Booked</p>
+                    <p>{{ product.sold }} Sold</p>
+                    -->
+                </div>
+                <div class="product-detail-holder">
+                    <h2>Include</h2>
+                    <ul>
+                        <li>Inclusion 1</li>
+                        <li>Inclusion 2</li>
+                        <li>Inclusion 3</li>
+                        <li>Inclusion 4</li>
+                        <li>Inclusion 5</li>
+                        <li>Inclusion 6</li>
+                    </ul>
+                </div>
+                <div class="product-detail-holder">
+                    <h2>Exclude</h2>
+                    <ul>
+                        <li>Exclusion 1</li>
+                        <li>Exclusion 2</li>
+                        <li>Exclusion 3</li>
+                        <li>Exclusion 4</li>
+                        <li>Exclusion 5</li>
+                        <li>Exclusion 6</li>
+                        <li>Exclusion 7</li>
+                        <li>Exclusion 8</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="product-detail-description">
+                    {{ product.description }}
+                </div>
+                <div class="product-detail-holder">
+                    <h2>Itinerary</h2>
+                    <!--
+                    {% for itinerary in itineraries|reverse %}
+                        <div class="product-detail-itinerary">
+                            <p><h2>DAY {{ itinerary.day }} - {{ itinerary.location }}</h2></p>
+                            <p>{{ itinerary.activity }}</p>
+                            <p>{{ itinerary.meal }}</p>
+                        </div>
+                    {% endfor %}
+                    -->
+                    {% for key, itinerary in itinerariesArray %}
+                        <div class="product-detail-itinerary">
+                            <p><h2>DAY {{ key }} - {{ itinerary.location }}</h2></p>
+                            <ul>
+                            {% for activity in itinerary.activity %}
+                                <li>{{ activity }}</li>
+                            {% endfor %}
+                            </ul>
+                            <p>{{ itinerary.meal }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="product-detail-holder">
+                    <h2>General Terms & Conditions</h2>
+                    <ul>
+                        <li>Konfirmasi terakhir dan jadwal perjalanan akan dibagikan 2 (dua) hari sebelum keberangkatan.</li>
+                        <li>Tempat wisata bisa diubah tanpa pemberitahuan sebelumnya.</li>
+                        <li>Harga dapat berubah sewaktu-waktu dengan atau tanpa pemberitahuan terlebih dahulu.</li>
+                        <li>Tidak ada pengembalian uang untuk layanan yang tidak digunakan.</li>
+                        <li>Anak dibawah usia 18 tahun tidak bisa melakukan perjalanan sendiri/tanpa ditemani orang dewasa.</li>
+                        <li>Tidak ada pengembalian uang untuk PAKET PERJALANAN yang DIBATALKAN atau DIUBAH atas permintaan customer.</li>
+                        <li>Paket hanya berlaku untuk Warga Negara Indonesia (WNI).</li>
+                        <li>High Season dan Peak Season periode (School Holiday, Idul fitri, Natal, dan Tahun Baru).</li>
+                        <li>Informasi lebih lanjut mengenai term dan condition bisa menghubungi 021-2556-5199.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
